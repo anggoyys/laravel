@@ -1,5 +1,6 @@
 <x-layout>
-    <form action="/fakultas" method="POST">
+    <h1>Edit Fakultas</h1>
+    <form action="/fakultas/{{ $fakultas->id }}" method="POST">
         @csrf
         @method("PUT")
         <div class="form-group">
