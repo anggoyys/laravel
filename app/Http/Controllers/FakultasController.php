@@ -32,6 +32,16 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'nama_fakultas' => ['required', "max:5"],
+            'nama_dekan' => ['required', "max:5"]
+        ],
+            ['nama_fakultas.required' => "Nama Fakultas Wajib di isi, tidak boleh kosong",
+            'nama_dekan.required'=> "Nama Dekan Wajib di isi",
+            'nama_fakultas.max' => "Nama Fakultas maksimal 5",
+            'nama_dekan.max' => "Nama Dekan maksimal 5"
+        ]);
+
         Fakultas::create([
             'nama_fakultas' => $request->nama_fakultas,
             'nama_dekan' => $request->nama_dekan
@@ -64,7 +74,12 @@ class FakultasController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Fakultas $fakulta)
-    {
+    {   
+        $validate = $request->validate([
+            'nama_fakultas' => ['required', "max:5"],
+            'nama_dekan' => ['required', "max:5"]
+        ]);
+
         $fakulta->update([
             'nama_fakultas' => $request->nama_fakultas,
             'nama_dekan' => $request->nama_dekan
@@ -79,7 +94,7 @@ class FakultasController extends Controller
      */
     public function destroy(Fakultas $fakulta)
     {
-        $fakulta->delete();
+        $fakulta->delete(0);
         return redirect()->back();
     }
 }
