@@ -47,7 +47,7 @@ class FakultasController extends Controller
             'nama_dekan' => $request->nama_dekan
         ]);
 
-        return redirect('/fakultas');
+        return redirect('/fakultas')-> with('success', 'Fakultas berhasil ditambah');
     }
 
     /**
@@ -59,6 +59,8 @@ class FakultasController extends Controller
             'fakultas' => $fakulta
         ]);
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

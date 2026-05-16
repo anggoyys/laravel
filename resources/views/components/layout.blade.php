@@ -132,6 +132,11 @@
 
     <!-- CONTENT -->
     <main class="container">
+        @if (session('success'))
+            <div class="alert alert succes">
+                {{ session('success') }}
+            </div>
+        @endif
         {{ $slot }}
     </main>
 
