@@ -1,147 +1,178 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard Fakultas</title>
+    <title>Sistem Informasi Fakultas</title>
 
-    <!-- Bootstrap 5 -->
+    {{-- Bootstrap 5 --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+          rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {{-- Google Font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <style>
+
         body{
-            background: #f4f7fb;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #212529;
         }
 
-        .navbar-custom{
-            background: linear-gradient(135deg, #0d6efd, #6610f2);
+        /* Navbar */
+        .navbar{
+            background-color: #ffffff;
+            border-bottom: 1px solid #e9ecef;
             padding: 14px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .navbar-brand{
-            font-size: 1.4rem;
             font-weight: 700;
-            color: white !important;
-            letter-spacing: 1px;
-        }
-
-        .navbar-brand i{
-            color: #ffd43b;
+            color: #0d6efd !important;
+            font-size: 22px;
         }
 
         .nav-link{
-            color: rgba(255,255,255,0.85) !important;
+            color: #495057 !important;
             font-weight: 500;
-            transition: 0.3s;
-            border-radius: 10px;
-            padding: 8px 14px !important;
+            transition: .2s;
         }
 
         .nav-link:hover{
-            background: rgba(255,255,255,0.15);
-            color: white !important;
-            transform: translateY(-2px);
+            color: #0d6efd !important;
         }
 
-        .btn-login{
-            border-radius: 12px;
-            padding: 8px 18px;
-            font-weight: 600;
-        }
-
+        /* Content */
         main{
+            min-height: 100vh;
             padding: 30px 0;
         }
+
+        .content-wrapper{
+            background: #fff;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Button */
+        .btn{
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer{
+            background-color: #fff;
+            border-top: 1px solid #e9ecef;
+            padding: 18px 0;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
     </style>
+
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    {{-- NAVBAR --}}
+    <nav class="navbar navbar-expand-lg navbar-light">
+
         <div class="container">
 
-            <!-- Logo -->
-            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-                <i class="bi bi-mortarboard-fill"></i>
-                SIMAK Kampus
+            {{-- Logo --}}
+            <a class="navbar-brand" href="/">
+                🎓 SI Fakultas
             </a>
 
-            <!-- Toggle Mobile -->
-            <button class="navbar-toggler border-0 shadow-none"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav">
+            {{-- Toggle --}}
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
 
                 <span class="navbar-toggler-icon"></span>
+
             </button>
 
-            <!-- Menu -->
+            {{-- Menu --}}
             <div class="collapse navbar-collapse" id="navbarNav">
 
-                <ul class="navbar-nav mx-auto gap-lg-2">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <i class="bi bi-house-door-fill me-1"></i>
+                        <a class="nav-link" href="/">
                             Home
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-buildings-fill me-1"></i>
+                        <a class="nav-link" href="/fakultas">
                             Fakultas
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-people-fill me-1"></i>
-                            Mahasiswa
+                        <a class="nav-link" href="{{ route('prodi.index') }}">
+                            Prodi
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="bi bi-journal-bookmark-fill me-1"></i>
-                            Jurusan
+                        <a class="nav-link" href="{{ route('prodi.create') }}">
+                            Tambah Prodi
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/fakultas/create"
+                           class="btn btn-primary px-4">
+                            + Fakultas
                         </a>
                     </li>
 
                 </ul>
 
-                <!-- Right Button -->
-                <div class="d-flex gap-2 mt-3 mt-lg-0">
-                    <button class="btn btn-light btn-login">
-                        <i class="bi bi-box-arrow-in-right"></i>
-                        Login
-                    </button>
-                </div>
-
             </div>
+
         </div>
+
     </nav>
 
-    <!-- CONTENT -->
-    <main class="container">
-        @if (session('success'))
-            <div class="alert alert succes">
-                {{ session('success') }}
+
+    {{-- CONTENT --}}
+    <main>
+
+        <div class="container">
+
+            <div class="content-wrapper">
+
+                {{ $slot }}
+
             </div>
-        @endif
-        {{ $slot }}
+
+        </div>
+
     </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <footer>
+        <div class="container">
+            © {{ date('Y') }} Sistem Informasi Fakultas
+        </div>
+    </footer>
+
+
+    {{-- Bootstrap JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
 </html>
