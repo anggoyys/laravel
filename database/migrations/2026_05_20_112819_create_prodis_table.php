@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +15,7 @@ return new class extends Migration
             $table->string('nama_prodi');
             $table->string('nama_kaprodi');
             $table->string('alias_prodi');
+            $table->string('photo_kaprodi');
             $table->timestamps();
         });
     }

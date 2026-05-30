@@ -124,10 +124,10 @@
                             Prodi
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('prodi.create') }}">
-                            Tambah Prodi
+                        <a href="/prodi/create"
+                           class="btn btn-primary px-4">
+                            + Prodi
                         </a>
                     </li>
 

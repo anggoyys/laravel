@@ -25,11 +25,12 @@
                                class="btn btn-primary px-4">
                                 List Fakultas
                             </a>
-
-                            <a href="/fakultas/create"
-                               class="btn btn-outline-primary px-4">
-                                Tambah Fakultas
+                            
+                            <a href="/prodi"
+                               class="btn btn-primary px-4">
+                                List Prodi
                             </a>
+
 
                         </div>
 

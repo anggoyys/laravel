@@ -24,7 +24,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route("prodi.store") }}" method="POST">
+                        <form action="/prodi" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-4">
@@ -36,7 +36,7 @@
                                     type="text"
                                     name="nama_prodi"
                                     class="form-control form-control-lg rounded-3"
-                                    placeholder="Contoh: Sistem Informasi"
+                                    placeholder="Masukkan nama prodi"
                                     
                                 >
                             </div>
@@ -50,7 +50,7 @@
                                     type="text"
                                     name="nama_kaprodi"
                                     class="form-control form-control-lg rounded-3"
-                                    placeholder="Contoh: Dr. Budi Santoso"
+                                    placeholder="Masukkan nama kaprodi"
                                     
                                 >
                             </div>
@@ -66,12 +66,26 @@
                                 </select>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="photo_kaprodi" class="form-label fw-semibold">
+                                    Photo Kaprodi
+                                </label>
+                                <input 
+                                    type="file"
+                                    id="photo_kaprodi"
+                                    name="photo_kaprodi"
+                                    class="form-control"
+                                    accept="image/*"
+                                    placeholder="Pilih photo kaprodi"
+                                >
+                            </div>
+
                             <div class="d-grid">
                                 <button 
                                     type="submit"
                                     class="btn btn-primary btn-lg rounded-3 shadow-sm"
                                 >
-                                    💾 Simpan Data
+                                     Simpan Data Prodi
                                 </button>
                             </div>
 
