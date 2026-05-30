@@ -36,7 +36,7 @@
                                     type="text"
                                     name="nama_prodi"
                                     class="form-control form-control-lg rounded-3"
-                                    placeholder="Contoh: Fakultas Teknik"
+                                    placeholder="Contoh: Sistem Informasi"
                                     
                                 >
                             </div>
