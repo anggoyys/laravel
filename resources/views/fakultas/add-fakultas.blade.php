@@ -108,9 +108,7 @@
     </style>
 
     <div class="container">
-
         <div class="form-wrapper">
-
             <div class="card form-card">
 
                 <!-- HEADER -->
@@ -119,15 +117,12 @@
                     <div class="form-icon">
                         <i class="bi bi-buildings-fill"></i>
                     </div>
-
                     <h2>
                         Tambah Fakultas
                     </h2>
-
                     <p>
                         Form input data fakultas universitas
                     </p>
-
                 </div>
 
                 <!-- BODY -->
@@ -160,19 +155,16 @@
                                     >
                             </div>
                         </div>
+
                         <!-- NAMA DEKAN -->
                         <div class="mb-4">
-
                             <label class="form-label">
                                 Nama Dekan
                             </label>
-
                             <div class="input-group">
-
                                 <span class="input-group-text">
                                     <i class="bi bi-person-badge-fill"></i>
                                 </span>
-
                                 <input
                                     type="text"
                                     name="nama_dekan"
@@ -180,19 +172,14 @@
                                     placeholder="Masukkan nama dekan..."
                                     class="form-control"
                                     >
-
                             </div>
-
                         </div>
 
                         <!-- BUTTON -->
                         <div class="d-grid mt-4">
-
                             <button type="submit" class="btn btn-primary btn-save">
-
                                 <i class="bi bi-save2-fill me-2"></i>
                                 Simpan Data Fakultas
-
                             </button>
                     </form>
                 </div>

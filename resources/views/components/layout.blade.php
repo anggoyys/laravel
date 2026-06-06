@@ -33,7 +33,7 @@
 
         .navbar-brand{
             font-weight: 700;
-            color: #0d6efd !important;
+            color: #172130 !important;
             font-size: 22px;
         }
 
@@ -84,12 +84,10 @@
 
     {{-- NAVBAR --}}
     <nav class="navbar navbar-expand-lg navbar-light">
-
         <div class="container">
-
             {{-- Logo --}}
             <a class="navbar-brand" href="/">
-                🎓 SI Fakultas
+                Kampus Inovasi
             </a>
 
             {{-- Toggle --}}
@@ -97,31 +95,15 @@
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNav">
-
                 <span class="navbar-toggler-icon"></span>
-
             </button>
 
             {{-- Menu --}}
             <div class="collapse navbar-collapse" id="navbarNav">
-
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-
                     <li class="nav-item">
                         <a class="nav-link" href="/">
                             Home
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/fakultas">
-                            Fakultas
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('prodi.index') }}">
-                            Prodi
                         </a>
                     </li>
                     <li class="nav-item">
@@ -130,45 +112,31 @@
                             + Prodi
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a href="/fakultas/create"
                            class="btn btn-primary px-4">
                             + Fakultas
                         </a>
                     </li>
-
                 </ul>
-
             </div>
-
         </div>
-
     </nav>
-
 
     {{-- CONTENT --}}
     <main>
-
         <div class="container">
-
             <div class="content-wrapper">
-
                 {{ $slot }}
-
             </div>
-
         </div>
-
     </main>
-
 
     <footer>
         <div class="container">
             © {{ date('Y') }} Sistem Informasi Fakultas
         </div>
     </footer>
-
 
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">

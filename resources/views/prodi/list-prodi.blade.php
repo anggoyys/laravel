@@ -1,141 +1,282 @@
 <x-layout>
+
+    <style>
+        body{
+            background: linear-gradient(to right, #eef2ff, #f8fafc);
+        }
+
+        .page-title{
+            font-weight: 800;
+            font-size: 2rem;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-custom{
+            border: none;
+            border-radius: 24px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            box-shadow:
+                0 10px 40px rgba(0,0,0,0.08),
+                0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .card-header-custom{
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 24px;
+            color: white;
+        }
+
+        .btn-add{
+            background: white;
+            color: #2563eb;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover{
+            transform: translateY(-2px);
+            background: #f8fafc;
+        }
+
+        .custom-table{
+            margin: 0;
+        }
+
+        .custom-table thead{
+            background: #111827;
+            color: white;
+        }
+
+        .custom-table thead th{
+            padding: 18px;
+            border: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .custom-table tbody td{
+            padding: 18px;
+            vertical-align: middle;
+            border-color: #f1f5f9;
+        }
+
+        .custom-table tbody tr{
+            transition: all 0.25s ease;
+        }
+
+        .custom-table tbody tr:hover{
+            background: #f8faff;
+            transform: scale(1.01);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .number-badge{
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+        }
+
+        .faculty-name{
+            font-weight: 700;
+            font-size: 15px;
+            color: #0f172a;
+        }
+
+        .dekan-name{
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .btn-action{
+            border: none;
+            border-radius: 12px;
+            padding: 9px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-detail{
+            background: #0ea5e9;
+            color: white;
+        }
+
+        .btn-detail:hover{
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .btn-edit{
+            background: #facc15;
+            color: #111827;
+        }
+
+        .btn-edit:hover{
+            background: #eab308;
+            transform: translateY(-2px);
+        }
+
+        .btn-delete{
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-delete:hover{
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        .empty-state{
+            padding: 60px 20px;
+            text-align: center;
+            color: #94a3b8;
+        }
+    </style>
+
     <div class="container py-5">
 
-        {{-- Alert Notifikasi Sukses --}}
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm mb-4" role="alert">
-                ✨ {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
-        {{-- Header --}}
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- HEADER -->
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
 
             <div>
-                <h2 class="fw-bold text-primary mb-1">
-                    📚 List Program Studi
-                </h2>
+                <h1 class="page-title mb-1">
+                    🎓 List Prodi
+                </h1>
 
-                <p class="text-muted mb-0">
-                    Data seluruh program studi universitas
-                </p>
+                <small class="text-muted">
+                    Dashboard Manajemen Data Prodi
+                </small>
             </div>
 
-            <a href="{{ route('prodi.create') }}" class="btn btn-primary rounded-3 shadow-sm">
-                + Tambah Prodi
+            <a href="/prodi/create" class="btn btn-add shadow-sm">
+                <i class="bi bi-plus-circle-fill me-1"></i>
+                Tambah Podi
             </a>
 
         </div>
 
-        {{-- Card --}}
-        <div class="card border-0 shadow-lg rounded-4">
+        <!-- CARD TABLE -->
+        <div class="card card-custom">
 
-            <div class="card-body p-4">
+            <div class="card-header-custom">
+                <h5 class="mb-0 fw-bold">
+                    📚 Data Prodi Universitas
+                </h5>
+            </div>
 
-                <div class="table-responsive">
+            <div class="table-responsive">
 
-                    <table class="table table-hover align-middle">
+                <table class="table custom-table align-middle">
 
-                        <thead class="table-primary">
+                    <thead>
+                        <tr>
+                            <th width="90">No</th>
+                            <th>Prodi</th>
+                            <th>Nama Kaprodi</th>
+                            <th width="280" class="text-center">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($prodis as $item)
                             <tr>
-                                <th width="5%">No</th>
-                                <th>Nama Prodi</th>
-                                <th>Nama Kaprodi</th>
-                                <th>Alias / Kode</th>
-                                <th width="30%" class="text-center">Aksi</th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-
-                            @forelse ($prodis as $item)
-
-                                <tr>
-
-                                    <td class="fw-semibold">
+                                <!-- NOMOR -->
+                                <td>
+                                    <div class="number-badge">
                                         {{ $loop->iteration }}
-                                    </td>
+                                    </div>
+                                </td>
 
-                                    <td>
-                                        <span class="fw-bold text-dark">
-                                            {{ $item->nama_prodi }}
-                                        </span>
-                                    </td>
+                                <!-- PRODI -->
+                                <td>
+                                    <div class="prodi-name">
+                                        {{ $item->prodi }}
+                                    </div>
+                                </td>
 
-                                    <td>
+                                <!-- KAPRODI -->
+                                <td>
+                                    <div class="kaprodi-name">
                                         {{ $item->nama_kaprodi }}
-                                    </td>
+                                    </div>
+                                </td>
 
-                                    <td>
-                                        <span class="badge bg-secondary px-2 py-2 rounded-2">
-                                            {{ $item->alias_prodi }}
-                                        </span>
-                                    </td>
+                                <!-- AKSI -->
+                                <td>
 
-                                    <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2 flex-wrap">
 
-                                        <div class="d-flex justify-content-center gap-2">
+                                        <a href="/prodi/{{ $item->id }}"
+                                            class="btn btn-action btn-detail">
 
-                                            {{-- Detail --}}
-                                            <a href="{{ route('prodi.show', $item->id) }}"
-                                               class="btn btn-info btn-sm rounded-3 text-white">
-                                                👁 Detail
-                                            </a>
+                                            <i class="bi bi-eye-fill"></i>
+                                            Detail
+                                        </a>
 
-                                            {{-- Edit --}}
-                                            <a href="{{ route('prodi.edit', $item->id) }}"
-                                               class="btn btn-warning btn-sm rounded-3 text-white">
-                                                ✏ Edit
-                                            </a>
+                                        <a href="/prodi/{{ $item->id }}/edit"
+                                            class="btn btn-action btn-edit">
 
-                                            {{-- Hapus --}}
-                                            <form action="{{ route('prodi.destroy', $item->id) }}" 
-                                                  method="POST"
-                                                  onsubmit="return confirm('Yakin ingin menghapus data prodi ini?')">
+                                            <i class="bi bi-pencil-square"></i>
+                                            Edit
+                                        </a>
 
-                                                @csrf
-                                                @method("DELETE")
+                                        <form action="/prodi/{{ $item->id }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus data?')">
 
-                                                <button type="submit"
-                                                        class="btn btn-danger btn-sm rounded-3">
-                                                    🗑 Hapus
-                                                </button>
+                                            @csrf
+                                            @method("DELETE")
 
-                                            </form>
+                                            <button type="submit"
+                                                class="btn btn-action btn-delete">
 
-                                        </div>
+                                                <i class="bi bi-trash-fill"></i>
+                                                Hapus
+                                            </button>
 
-                                    </td>
+                                        </form>
 
-                                </tr>
+                                    </div>
 
-                            @empty
-
-                                <tr>
-                                    <td colspan="5" class="text-center py-4 text-muted">
-                                        Data program studi belum tersedia
-                                    </td>
-                                </tr>
-
-                            @endforelse
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
+                                </td>
+                            </tr>
+                            
+                        @empty
+                            <tr>
+                                <td colspan="4">
+                                     <div class="empty-state">
+                                        <h4 class="fw-bold mb-2">
+                                            📂 Belum Ada Data
+                                        </h4>
+                                        <p class="mb-0">
+                                            Data prodi belum tersedia
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
-
-            {{-- Footer --}}
-            <div class="card-footer bg-light text-center rounded-bottom-4">
-                <small class="text-muted">
-                    Sistem Informasi Program Studi
-                </small>
-            </div>
-
         </div>
-
     </div>
 </x-layout>

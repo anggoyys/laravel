@@ -8,8 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/fakultas', FakultasController::class);
-Route::resource('/prodi', ProdiController::class);
+Route::resource('/fakultas', FakultasController::class)->middleware('auth');
+Route::resource('/prodi', ProdiController::class)->middleware('auth');
 // Route::get('/fakultas', function () {
 //     return view('fakultas.list-fakultas');
 // });
